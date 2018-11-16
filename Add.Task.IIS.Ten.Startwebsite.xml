@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Add.Task.IIS.Ten.Startwebsite</ID>
+      <Version>1.0.0.0</Version>
+    </Identity>
+    <Name>Add Task IIS Ten Start-website</Name>
+    <References>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.InternetInformationServices.2016</ID>
+        <Version>10.0.6.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8437.11</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <Monitoring>
+    <Recoveries>
+      <Recovery ID="MomUIGenaratedRecovery3956586cdb5444a39d6dceaaef3ac59e" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.InternetInformationServices.10.0.WebSite" Monitor="Windows!Microsoft.Windows.InternetInformationServices.10.0.WebSite.WebSiteStatusCheck.Monitor" ResetMonitor="false" ExecuteOnState="Error" Remotable="true" Timeout="300">
+        <Category>Custom</Category>
+        <WriteAction ID="MomUIGenaratedModule3c62a04257bc4b9094ba156caa61a1c2" TypeID="System!System.CommandExecuter">
+          <ApplicationName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</ApplicationName>
+          <WorkingDirectory />
+          <CommandLine>-Command "&amp;{Start-WebSite -Name '$Target/Property[Type="System!System.Entity"]/DisplayName$'}"</CommandLine>
+          <TimeoutSeconds>15</TimeoutSeconds>
+          <RequireOutput>true</RequireOutput>
+        </WriteAction>
+      </Recovery>
+    </Recoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="false">
+      <DisplayStrings>
+        <DisplayString ElementID="Add.Task.IIS.Ten.Startwebsite">
+          <Name>Add Task IIS Ten Start-website</Name>
+          <Description>Issues a Start-website command on Windows 2016 computers.
+
+Runs the PowerShell command:
+
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "&amp;{Start-WebSite -Name '&lt;name of websiite&gt;'}" where name of website is $Target/Property[Type="System!System.Entity"]/DisplayName$
+
+
+Starts the website by name on the specific IIS 10 computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="MomUIGenaratedRecovery3956586cdb5444a39d6dceaaef3ac59e">
+          <Name>Start-Website</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>
